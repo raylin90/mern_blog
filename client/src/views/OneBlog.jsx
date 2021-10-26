@@ -14,8 +14,8 @@ const OneBlog = props => {
         getOneBlog(`${props._id}`)
     }, [])
 
-    const oneBlog = useSelector(state => state.blogs)
-    console.log(oneBlog.state)
+    const oneBlog = useSelector(state => state.oneBlog)
+    // console.log(oneBlog.state)
     
     return(
         <>

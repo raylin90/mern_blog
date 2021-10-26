@@ -9,7 +9,8 @@ import Button from '@mui/material/Button';
 const Form = props => {
 
     const { submitHandler, changeHandler, myForm, errors } = props
-    console.log(errors)
+    // console.log(errors)
+    
     return(
         <form >
             <FormControl sx={{ m: 1.5, width: "60vw" }} >

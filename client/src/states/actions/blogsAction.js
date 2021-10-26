@@ -21,7 +21,7 @@ export const getOneBlog = id => {
             .then(res => {
                 // console.log(res.data)
                 dispatch({
-                    type: "GET_BLOGS",
+                    type: "GET_ONE_BLOG",
                     payload: res.data,
                 })
             })
@@ -41,10 +41,33 @@ export const saveBlog = blog => {
                         payload: res.data.error.errors
                     })
                 } else {
-                    console.log("NO ERROR")
+                    // console.log("NO ERROR")
                     navigate("/")
                 }
             })
             .catch(err => console.log("something went wrong when saving one blog", err))
+    }
+}
+
+export const deleteBlog = id => {
+    return(dispatch) => {
+        return axios.delete(`http://localhost:8000/api/blog/delete/${id}`)
+            .then(res => {
+                console.log("deleted")
+                navigate("/")
+            })
+            .catch(err => console.log("something went wrong when deleting one blog", err))
+    }
+}
+
+export const updateBlog = id => {
+    console.log(id)
+    return(dispatch) => {
+        return axios.post(`http://localhost:8000/api/blog/delete/${id}`)
+            .then(res => {
+                console.log("deleted")
+                navigate("/")
+            })
+            .catch(err => console.log("something went wrong when deleting one blog", err))
     }
 }
