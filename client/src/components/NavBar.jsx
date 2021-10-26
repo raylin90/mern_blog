@@ -4,9 +4,11 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import Typography from '@mui/material/Typography';
 
 const Navbar = props => {
     return(
+        <>
         <Box
         sx={{
             backgroundColor: "#e0f2f1",
@@ -46,6 +48,9 @@ const Navbar = props => {
         </Grid>
 
         </Box>
+        { props.children }
+        <Typography variant="overline" sx={{ display:"flex",justifyContent:"center" }}>MERN PROJECT WITH MATERIAL-UI </Typography>
+        </>
     );
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { blogsCreators } from '../states/types';
+import Page from '../components/Page';
 
 const OneBlog = props => {
 
@@ -19,14 +20,8 @@ const OneBlog = props => {
     return(
         <>
         {
-            oneBlog.state ? 
-            <>
-                <h1>{oneBlog.state.title}</h1>
-                <img src={oneBlog.state.url} alt="" />
-                <h1>{oneBlog.state.content}</h1>
-            </> : "No"
+            oneBlog.state ? <Page blog={ oneBlog.state }/> : "No"
         }
-
         </>
     );
 }
