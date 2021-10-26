@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 const MediaCard = props => {
 
@@ -19,11 +20,11 @@ const MediaCard = props => {
                 image={ blog.url }
                 alt="blog image"
             />
-            <CardActions sx={{ paddingButtom: "0px"}}>
-                <Button size="small">read more...</Button>
+            <CardActions >
+                <Button size="small" sx={{ paddingButtom: "0px"}}><Link href={`/blog/${ blog._id }`} underline="hover">read more..</Link></Button>
             </CardActions>
             <CardContent sx={{ paddingTop: "0px"}}>
-                <Typography gutterBottom variant="h5" noWrap={{ wordWrap: "break-word" }} component="div">{ blog.title }</Typography>
+                <Typography gutterBottom variant="h5" noWrap={true} component="div">{ blog.title }</Typography>
                 <Typography variant="body2" sx={{ height: "40px"}} color="text.secondary">{ blog.content }</Typography>
             </CardContent>
         </Card>

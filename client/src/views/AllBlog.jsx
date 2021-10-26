@@ -8,17 +8,18 @@ import Box from '@mui/material/Box';
 
 const AllBlog = props => {
 
+    // get blogs from redux
     const blogs = useSelector(state => state.blogs)
-    console.log("all blogs ", blogs.state)
+    // console.log("all blogs ", blogs.state)
 
+    // import dispatch
     const dispatch = useDispatch()
+    // destructure action from bindActionCreators
     const { getAllBlogs} = bindActionCreators(blogsCreators, dispatch)
     // console.log(getAllBlogs);
     // console.log(getOneBlogs);
 
-
     useEffect(() => {
-        // dispatch(getOneBlogs())
         getAllBlogs()
     }, [])
 
