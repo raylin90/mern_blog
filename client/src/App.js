@@ -1,8 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
 import AllBlog from './views/AllBlog';
 import Navbar from './components/NavBar';
-import { Router } from '@reach/router'
+import { Router } from '@reach/router';
+
 function App() {
   return (
     <div>

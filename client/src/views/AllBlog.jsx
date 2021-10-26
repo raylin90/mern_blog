@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { blogsCreators } from '../states/types'
 import MediaCard from '../components/MediaCard'
-
+import img from '../images/main.jpg'
+import Box from '@mui/material/Box';
 
 const AllBlog = props => {
 
@@ -23,12 +24,13 @@ const AllBlog = props => {
 
     return(
         <>
-        <h1>This is All Blog Page</h1>
+        <img src={img} alt="main img" style={{width: "99vw", height: "50vh", objectFit: "cover"}} />
+        <Box sx={{ display: "flex", flexWrap: 'wrap' }}>
         {
-            blogs.state ? blogs.state.map((blog, i) => <MediaCard key={i}/>) : ""
+            blogs.state ? blogs.state.map((blog, i) => <MediaCard key={i} blog={blog}/>) : ""
         }
+        </Box>
         </>
-
     );
 }
 
