@@ -20,7 +20,7 @@ const OneBlog = props => {
     return(
         <>
         {
-            oneBlog.state ? <Page blog={ oneBlog.state }/> : "No"
+            oneBlog.state ? <Page blog={ oneBlog.state }/> : ""
         }
         </>
     );

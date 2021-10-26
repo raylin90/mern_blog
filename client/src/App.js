@@ -1,7 +1,8 @@
 import AllBlog from './views/AllBlog';
-import Navbar from './components/NavBar';
+import Navbar from './views/NavBar';
 import { Router } from '@reach/router';
 import OneBlog from './views/OneBlog';
+import AddBlog from './views/AddBlog';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Router>
           <AllBlog path="/home"/>
           <OneBlog path="/blog/:_id"/>
+          <AddBlog path="/blog/write" />
         </Router>
       </Navbar>
     </div>
