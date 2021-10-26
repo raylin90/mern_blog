@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import AllBlog from './views/AllBlog';
-
+import Navbar from './components/NavBar';
+import { Router } from '@reach/router'
 function App() {
   return (
-    <div className="App">
-      <h1>This is the Home Page</h1>
-      <AllBlog/>
+    <div>
+      <Navbar/>
+      <Router>
+        <AllBlog path="/home"/>
+      </Router>
     </div>
   );
 }

@@ -2,27 +2,33 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { blogsCreators } from '../states/types'
-import { getAllBlogs } from '../states/actions/blogsAction'
+import MediaCard from '../components/MediaCard'
+
 
 const AllBlog = props => {
 
     const blogs = useSelector(state => state.blogs)
-    console.log(blogs)
+    console.log("all blogs ", blogs.state)
 
     const dispatch = useDispatch()
-    const hello = bindActionCreators(blogsCreators, dispatch)
-    console.log(hello);
+    const { getAllBlogs} = bindActionCreators(blogsCreators, dispatch)
+    // console.log(getAllBlogs);
+    // console.log(getOneBlogs);
 
 
     useEffect(() => {
-        console.log("hi")
-        dispatch(getAllBlogs())
+        // dispatch(getOneBlogs())
+        getAllBlogs()
     }, [])
 
     return(
         <>
         <h1>This is All Blog Page</h1>
+        {
+            blogs.state ? blogs.state.map((blog, i) => <MediaCard key={i}/>) : ""
+        }
         </>
+
     );
 }
 

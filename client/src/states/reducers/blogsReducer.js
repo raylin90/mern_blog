@@ -8,15 +8,11 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         case "GET_BLOGS":
             return {
-                ...state,
-                blogs: action.payload,
-                loading:false,
+                state: action.payload,
             }
         case "ERROR":
             return {
-                ...state,
-                blogs: action.payload,
-                loading:false,
+                state: action.payload,
             }
         default:
             return state;
