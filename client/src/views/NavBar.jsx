@@ -33,7 +33,7 @@ const Navbar = props => {
             </Grid>
 
             <Grid item xs={6} sx={{ display: "flex", justifyContent: "center" }}>
-                <Link href="/home" underline="hover" color="#616161">HOME</Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                <Link href="/" underline="hover" color="#616161">HOME</Link>&nbsp;&nbsp;&nbsp;&nbsp;
                 <Link href="/blog/write" underline="hover" color="#616161">WRITE</Link>&nbsp;&nbsp;&nbsp;
                 <Link href="/chat" underline="hover" color="#616161">CHAT</Link>&nbsp;&nbsp;&nbsp;
                 <Link href="/contact" underline="hover" color="#616161">CONTACT</Link>

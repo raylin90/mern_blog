@@ -1,12 +1,6 @@
-const initialState = {
-    title: "",
-    url: "",
-    content: "",
-}
-
-const reducer = (state = initialState, action) => {
+const reducer = (state = {}, action) => {
     switch(action.type) {
-        case "GET_BLOGS":
+        case "ERRORS":
             return {
                 state: action.payload,
             }

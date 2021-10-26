@@ -9,7 +9,7 @@ function App() {
     <div>
       <Navbar>
         <Router>
-          <AllBlog path="/home"/>
+          <AllBlog path="/"/>
           <OneBlog path="/blog/:_id"/>
           <AddBlog path="/blog/write" />
         </Router>
