@@ -60,14 +60,19 @@ export const deleteBlog = id => {
     }
 }
 
-export const updateBlog = id => {
-    console.log(id)
+export const updateBlog = (id, blog) => {
     return(dispatch) => {
-        return axios.post(`http://localhost:8000/api/blog/delete/${id}`)
+        return axios.put(`http://localhost:8000/api/blog/update/${id}`, blog)
             .then(res => {
-                console.log("deleted")
-                navigate("/")
+                if(res.data.error) {
+                    dispatch({
+                        type: "ERRORS",
+                        payload: res.data.error.errors
+                    })
+                } else {
+                    navigate(`/blog/${id}`)
+                }
             })
-            .catch(err => console.log("something went wrong when deleting one blog", err))
+            .catch(err => console.log("something went wrong when updating one blog", err))
     }
 }

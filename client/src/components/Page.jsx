@@ -6,13 +6,14 @@ import Box from '@mui/material/Box';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { blogsCreators } from '../states/types'
+import { navigate } from '@reach/router';
 
 const Page = props => {
 
     const { blog } = props;
 
     const dispatch = useDispatch()
-    const { deleteBlog, updateBlog } = bindActionCreators(blogsCreators, dispatch)
+    const { deleteBlog } = bindActionCreators(blogsCreators, dispatch)
 
     return(
         <Paper elevation={2} sx={{ padding: "20px", minHeight: "100vh"}}>
@@ -21,7 +22,7 @@ const Page = props => {
             <img src={blog.url} alt="broken img" style={{maxWidth: "50vw"}}/>
 
             <Box sx={{ '& button': { m: 0.5 } }}>
-                <Button onClick={()=>updateBlog(`${blog._id}`)} variant="outlined" color="success" size="small">Update</Button>
+                <Button onClick={()=>navigate(`/blog/update/${blog._id}`)} variant="outlined" color="success" size="small">Update</Button>
                 <Button onClick={()=>deleteBlog(`${blog._id}`)} variant="outlined" color="error" size="small">Delete</Button>
             </Box>
             <br />

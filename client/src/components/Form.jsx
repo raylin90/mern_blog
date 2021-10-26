@@ -9,13 +9,12 @@ import Button from '@mui/material/Button';
 const Form = props => {
 
     const { submitHandler, changeHandler, myForm, errors } = props
-    // console.log(errors)
     
     return(
         <form >
             <FormControl sx={{ m: 1.5, width: "60vw" }} >
                 <InputLabel htmlFor="title">Title</InputLabel>
-                <Input name="title" onChange={changeHandler} defaultValue={ myForm.title }/>
+                <Input name="title" onChange={changeHandler} value={ myForm.title }/>
                 {
                     errors ? errors.title ? <FormHelperText sx={{ color: "#f44336" }}>{errors.title.message}</FormHelperText> :"" : ""
                 }
@@ -23,7 +22,7 @@ const Form = props => {
             <br />
             <FormControl sx={{ m: 1.5, width: "60vw" }}>
                 <InputLabel htmlFor="url">Image</InputLabel>
-                <Input name="url" onChange={ changeHandler } defaultValue={ myForm.url }/>
+                <Input name="url" onChange={ changeHandler } value={ myForm.url }/>
                 {
                     errors ? errors.url ? <FormHelperText sx={{ color: "#f44336" }}>{errors.url.message}</FormHelperText> :"" : ""
                 }
@@ -35,7 +34,7 @@ const Form = props => {
                     label="Content"
                     multiline
                     rows={12}
-                    defaultValue={ myForm.content }
+                    value={ myForm.content }
                     name="content"
                     onChange={ changeHandler }
                 />
