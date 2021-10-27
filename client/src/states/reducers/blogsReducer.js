@@ -1,6 +1,7 @@
 const initialState = {
     title: "",
     url: "",
+    description: "",
     content: "",
 }
 

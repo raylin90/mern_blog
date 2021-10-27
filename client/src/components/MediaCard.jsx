@@ -25,7 +25,7 @@ const MediaCard = props => {
             </CardActions>
             <CardContent sx={{ paddingTop: "0px"}}>
                 <Typography gutterBottom variant="h5" noWrap={true} component="div">{ blog.title }</Typography>
-                <Typography variant="body2" sx={{ height: "40px"}} className="postDesc" >{ blog.content }</Typography>
+                <Typography variant="body2" sx={{ height: "40px"}} className="postDesc" >{ blog.description }</Typography>
             </CardContent>
         </Card>
     );

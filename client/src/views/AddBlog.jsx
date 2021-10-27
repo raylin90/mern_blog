@@ -15,6 +15,7 @@ const AddBlog = props => {
     const [myForm, setMyForm] = useState({
         title: "",
         url: "",
+        description: "",
         content: "",
     })
     

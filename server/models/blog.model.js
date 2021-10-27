@@ -1,10 +1,10 @@
 // bring in mongoose
 const mongoose = require('mongoose');
 // const marked = require('marked')
-// const createDomPurify = require('dompurify');
-// const { JSDOM } = require('jsdom');
-// // allow dompurify to create HTML page by using JSDOM window
-// const dompurify = createDomPurify(new JSDOM().window)
+const createDomPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+// allow dompurify to create HTML page by using JSDOM window
+const dompurify = createDomPurify(new JSDOM().window)
 
 // this is where we make our model
 const BlogSchema = new mongoose.Schema({
@@ -16,15 +16,20 @@ const BlogSchema = new mongoose.Schema({
         type: String,
         required: [true, "URL is required"],
     },
+    description: {
+        type: String,
+        required: [true, "Description is required"],
+        minlength: [10, "Minimun length should be at least 10 characters"]
+    },
     content: {
         type: String,
         required: [true, "Content is required"],
         minlength: [10, "Minimun length should be at least 10 characters"]
     },
-    // sanitizedContent: {
-    //     type: String,
-    //     required: true,
-    // }
+    sanitizedContent: {
+        type: String,
+        required: true,
+    }
 }, {timestamps: true})
 
 // convert the content to marked down HTML

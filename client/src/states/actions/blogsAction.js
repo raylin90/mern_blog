@@ -71,7 +71,9 @@ export const deleteBlog = id => {
 
 // put fetch to update a blog
 export const updateBlog = (id, blog) => {
+    console.log(blog)
     blog.sanitizedContent = dompurify.sanitize(marked(blog.content));
+    console.log(blog)
     return(dispatch) => {
         return axios.put(`http://localhost:8000/api/blog/update/${id}`, blog)
             .then(res => {

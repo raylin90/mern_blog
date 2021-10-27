@@ -29,6 +29,14 @@ const Form = props => {
             </FormControl>
             <br />
             <FormControl sx={{ m: 1.5, width: "60vw" }} >
+                <InputLabel htmlFor="description">Description</InputLabel>
+                <Input name="description" onChange={changeHandler} value={ myForm.description }/>
+                {
+                    errors ? errors.description ? <FormHelperText sx={{ color: "#f44336" }}>{errors.description.message}</FormHelperText> :"" : ""
+                }
+            </FormControl>
+            <br />
+            <FormControl sx={{ m: 1.5, width: "60vw" }} >
                 <TextField
                     id="outlined-multiline-static"
                     multiline
