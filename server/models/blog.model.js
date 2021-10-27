@@ -30,7 +30,7 @@ const BlogSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 // convert the content to marked down HTML
 BlogSchema.pre("validate", function(next) {

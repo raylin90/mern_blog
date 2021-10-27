@@ -7,3 +7,8 @@ mongoose
 express
 cors
 jsx
+socket.io
+Auth
+Redux
+useState
+Material-UI
