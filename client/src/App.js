@@ -5,6 +5,8 @@ import OneBlog from './views/OneBlog';
 import AddBlog from './views/AddBlog';
 import UpdateBlog from './views/UpdateBlog';
 import ChatBox from './components/ChatBox'
+import Login from './views/Login';
+import Register from './views/Register';
 
 
 function App() {
@@ -17,6 +19,9 @@ function App() {
           <AddBlog path="/blog/write"/>
           <UpdateBlog path="/blog/update/:_id"/>
           <ChatBox path="/chat"/>
+
+          <Login path="/login"/>
+          <Register path="register"/>
         </Router>
       </Navbar>
     </div>

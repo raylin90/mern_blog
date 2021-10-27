@@ -39,4 +39,13 @@ class UserController {
             })
             .catch(err => console.log("something went wrong when login a user", err))
     }
+
+    getLoggedInUser(req, res) {
+        const decodedJWT = jwt.decode(req.cookie.usertoken, {complete: true})
+        User.findById(decodedJWT.payload._id)
+            .then(user => res.json(user))
+            .then(err => console.log("something went wrong when getting login user info", err))
+    }
 }
+
+module.exports = new UserController();

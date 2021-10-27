@@ -24,7 +24,8 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 // allow app to use cookiess
 app.use(cookies());
 // import all routes
-const AllMyRoutes = require("./server/routes/blog.routes", "./server/routes/user.routes")(app);
+const BlogRoutes = require("./server/routes/blog.routes")(app);
+const UserRoutes = require("./server/routes/user.routes")(app);
 
 // we need to start our server
 const server = app.listen(port, () => console.log(`Running on port ${port}!!`));
