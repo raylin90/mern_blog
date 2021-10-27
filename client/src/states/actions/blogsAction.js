@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { navigate } from '@reach/router';
 
+// get fetch to get all blogs
 export const getAllBlogs = () => {
     return(dispatch) => {
         return axios.get("http://localhost:8000/api/blogs")
@@ -15,6 +16,7 @@ export const getAllBlogs = () => {
     }
 }
 
+// get fetch to get one blog
 export const getOneBlog = id => {
     return(dispatch) => {
         return axios.get(`http://localhost:8000/api/blog/${id}`)
@@ -29,6 +31,7 @@ export const getOneBlog = id => {
     }
 }
 
+// post fetch to save blog
 export const saveBlog = blog => {
     return(dispatch) => {
         return axios.post(`http://localhost:8000/api/blog/create`, blog)
@@ -49,6 +52,7 @@ export const saveBlog = blog => {
     }
 }
 
+// delete fetch to delete a blog
 export const deleteBlog = id => {
     return(dispatch) => {
         return axios.delete(`http://localhost:8000/api/blog/delete/${id}`)
@@ -60,6 +64,7 @@ export const deleteBlog = id => {
     }
 }
 
+// put fetch to update a blog
 export const updateBlog = (id, blog) => {
     return(dispatch) => {
         return axios.put(`http://localhost:8000/api/blog/update/${id}`, blog)

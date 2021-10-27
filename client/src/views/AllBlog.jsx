@@ -10,7 +10,7 @@ const AllBlog = props => {
 
     // get blogs from redux
     const blogs = useSelector(state => state.blogs)
-    console.log("all blogs ", blogs.state)
+    // console.log("all blogs ", blogs.state)
 
     // import dispatch
     const dispatch = useDispatch()
@@ -20,6 +20,7 @@ const AllBlog = props => {
     // console.log(getOneBlogs);
 
     useEffect(() => {
+        // make axios fetch call to get all blogs from database
         getAllBlogs()
     }, [])
 

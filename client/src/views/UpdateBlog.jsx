@@ -7,22 +7,27 @@ import axios from 'axios';
 
 const UpdateBlog = props => {
 
-    const [myForm, setMyForm] = useState({})
+    // we need to use local state because we need to use onChange listener
+    const [myForm, setMyForm] = useState({
+        title: "",
+        url: "",
+        content: "",
+    })
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/blog/${props._id}`)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
+                // set up local state myForm
                 setMyForm(res.data)
             })
             .catch(err => console.log("something went wrong when getting one blog", err))
     }, [])
 
+    // extract updateBlog axios call from reducer
     const dispatch = useDispatch()
     const { updateBlog } = bindActionCreators(blogsCreators, dispatch)
     const errors = useSelector(state => state.errors)
-    console.log("errors: ", errors)
-
 
     const changeHandler = e => {
         setMyForm({...myForm, [e.target.name] : e.target.value})
@@ -30,12 +35,12 @@ const UpdateBlog = props => {
 
     const submitHandler = e => {
         e.preventDefault();
+        // update redux state
         updateBlog(`${props._id}`, myForm)
     }
 
     return(
         <div style={{ padding: "20px", minHeight: "100vh"}} onLoad={e => console.log("onload event ", e)}>
-        <h1>This is my Update Page</h1>
         <Form submitHandler={ submitHandler } changeHandler={ changeHandler } myForm={ myForm } errors={ errors.state}/>
         </div>
     );

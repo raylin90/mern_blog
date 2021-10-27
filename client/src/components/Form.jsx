@@ -31,11 +31,11 @@ const Form = props => {
             <FormControl sx={{ m: 1.5, width: "60vw" }} >
                 <TextField
                     id="outlined-multiline-static"
-                    label="Content"
                     multiline
                     rows={12}
                     value={ myForm.content }
                     name="content"
+                    label="Content"
                     onChange={ changeHandler }
                 />
                 {
@@ -44,7 +44,6 @@ const Form = props => {
                 <br /><br />
                 <Button variant="contained" onClick={ submitHandler }>Submit</Button>
             </FormControl>
-
         </form>
     );
 }

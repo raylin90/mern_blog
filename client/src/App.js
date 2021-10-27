@@ -4,6 +4,8 @@ import { Router } from '@reach/router';
 import OneBlog from './views/OneBlog';
 import AddBlog from './views/AddBlog';
 import UpdateBlog from './views/UpdateBlog';
+import ChatBox from './components/ChatBox'
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <OneBlog path="/blog/:_id"/>
           <AddBlog path="/blog/write"/>
           <UpdateBlog path="/blog/update/:_id"/>
+          <ChatBox path="/chat"/>
         </Router>
       </Navbar>
     </div>

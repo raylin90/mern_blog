@@ -26,11 +26,9 @@ const AddBlog = props => {
         e.preventDefault();
         saveBlog(myForm);
     }
-    
 
     return(
         <div style={{ padding: "20px", minHeight: "100vh"}}>
-        <h1>This is my Add Page</h1>
         <Form submitHandler={ submitHandler } changeHandler={ changeHandler } myForm={ myForm } errors={ errors.state}/>
         </div>
     );
