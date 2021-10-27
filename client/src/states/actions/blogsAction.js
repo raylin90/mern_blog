@@ -1,5 +1,10 @@
 import axios from 'axios';
 import { navigate } from '@reach/router';
+const marked = require('marked')
+const createDomPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+const dompurify = createDomPurify(new JSDOM().window)
+
 
 // get fetch to get all blogs
 export const getAllBlogs = () => {
@@ -37,14 +42,14 @@ export const saveBlog = blog => {
         return axios.post(`http://localhost:8000/api/blog/create`, blog)
             .then(res => {
                 if(res.data.error) {
-                    // console.log("ERRORS")
-                    // console.log(res.data.error.errors)
+                    console.log("ERRORS")
+                    console.log(res.data.error.errors)
                     dispatch({
                         type: "ERRORS",
                         payload: res.data.error.errors
                     })
                 } else {
-                    // console.log("NO ERROR")
+                    console.log("NO ERROR")
                     navigate("/")
                 }
             })
@@ -66,6 +71,7 @@ export const deleteBlog = id => {
 
 // put fetch to update a blog
 export const updateBlog = (id, blog) => {
+    blog.sanitizedContent = dompurify.sanitize(marked(blog.content));
     return(dispatch) => {
         return axios.put(`http://localhost:8000/api/blog/update/${id}`, blog)
             .then(res => {

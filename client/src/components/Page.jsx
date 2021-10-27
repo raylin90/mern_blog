@@ -26,7 +26,7 @@ const Page = props => {
                 <Button onClick={()=>deleteBlog(`${blog._id}`)} variant="outlined" color="error" size="small">Delete</Button>
             </Box>
             <br />
-            <Typography variant="body1">{blog.content}</Typography>
+            <Typography variant="body1" dangerouslySetInnerHTML={{ __html: blog.sanitizedContent }}></Typography>
         </Paper>
     );
 }
