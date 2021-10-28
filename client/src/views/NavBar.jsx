@@ -8,12 +8,17 @@ import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { authCreators } from '../states/types'
+import { useSelector } from 'react-redux';
 
 const Navbar = props => {
 
     const dispatch = useDispatch()
     const { authLogout } = bindActionCreators(authCreators, dispatch)
 
+    // check redux if any user obj in there
+    const isUserLogin = useSelector(state => state.auth)
+    console.log("IM checking at navvar", isUserLogin)
+        
     return(
         <>
         <Box
@@ -47,9 +52,16 @@ const Navbar = props => {
             </Grid>
 
             <Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Link href="/login" underline="hover" color="#616161">Login</Link>&nbsp;&nbsp;
-                <Link href="/register" underline="hover" color="#616161">Register</Link>
-                <Link onClick={ authLogout }underline="hover" color="#616161">Lougout</Link>
+                {
+                    isUserLogin.state ? 
+                    <Link onClick={ authLogout }underline="hover" color="#616161">Lougout</Link>
+                    :
+                    <>
+                    <Link href="/login" underline="hover" color="#616161">Login</Link>&nbsp;&nbsp;
+                    <Link href="/register" underline="hover" color="#616161">Register</Link>&nbsp;&nbsp;
+                    </>
+                }
+
             </Grid>
 
             <Grid item xs={1}/>

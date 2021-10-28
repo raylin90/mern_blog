@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { navigate } from '@reach/router';
 
+// process user register
 export const authRegister = form => {
     return(dispatch) => {
         return axios.post("http://localhost:8000/api/user/register", form, { withCredentials: true })
             .then(res => {
+                console.log(res)
                 if(res.data.errors) {
-                    console.log(res.data.errors)
                     dispatch({
                         type: "ERRORS",
                         payload: res.data.errors
@@ -20,6 +21,7 @@ export const authRegister = form => {
     }
 }
 
+// process user login
 export const authLogin = form => {
     return(dispatch) => {
         return axios.post("http://localhost:8000/api/user/login", form, { withCredentials: true })
@@ -39,6 +41,7 @@ export const authLogin = form => {
     }
 }
 
+// fetch user login information
 export const authUserLoggedIn = () => {
     return(dispatch) => {
         return axios.get("http://localhost:8000/api/user/getloggedinuser", { withCredentials: true })
@@ -53,11 +56,16 @@ export const authUserLoggedIn = () => {
     }
 }
 
+// clear cookie so user can log out
 export const authLogout = () => {
     console.log("logout")
     return(dispatch) => {
         return axios.get("http://localhost:8000/api/user/logout", { withCredentials: true })
-            .then(res => console.log("user logged", res))
+            .then(res => {
+                console.log("user logged", res);
+                navigate("/login");
+                console.log("redirect")
+            })
             .catch(err => console.log("something went wrong when logout user", err))
     }
 }

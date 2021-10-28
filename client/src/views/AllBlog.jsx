@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { blogsCreators, authCreators } from '../states/types'
 import MediaCard from '../components/MediaCard'
 import img from '../images/main.jpg'
 import Box from '@mui/material/Box';
-
 
 const AllBlog = props => {
 
@@ -21,7 +20,6 @@ const AllBlog = props => {
     // console.log(getOneBlogs);
 
     const { authUserLoggedIn } = bindActionCreators(authCreators, dispatch)
-    const isUserLogin = useSelector(state => state.auth)
 
     useEffect(() => {
         getAllBlogs();

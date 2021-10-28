@@ -6,18 +6,29 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 class UserController {
     register(req, res) {
-        // create a new user Obj
-        const user = new User(req.body)
-        // save it to db
-        user.save()
-            // after we save the user into our databse
-            .then(() => {
-                res
-                    // create a cookie with token(user id and JWT secreat key), limited to http request only
-                    .cookie("usertoken", jwt.sign({_id: user._id}, JWT_SECRET_KEY), {httpOnly: true})
-                    .json({message: "you have created a new user", user: user})
+        // console.log(req.body.email)
+        User.findOne({ email: req.body.email })
+            .then(user => {
+                if(user === null) {
+                    // console.log("unique")
+                    // create a new user Obj
+                    const user = new User(req.body)
+                    // save it to db
+                    user.save()
+                        // after we save the user into our databse
+                        .then(() => {
+                            res
+                                // create a cookie with token(user id and JWT secreat key), limited to http request only
+                                .cookie("usertoken", jwt.sign({_id: user._id}, JWT_SECRET_KEY), {httpOnly: true})
+                                .json({message: "you have created a new user", user: user})
+                        })
+                        .catch(err => res.json(err));
+                } else {
+                    console.log("email in use")
+                    res.json( {errors: { email: { message: "Email already in use"}}}) // email is not found
+                }
             })
-            .catch(err => res.json(err));
+
     }
 
     login(req, res) {
