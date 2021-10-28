@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { blogsCreators, authCreators } from '../states/types'
+import { blogsCreators } from '../states/types'
 import MediaCard from '../components/MediaCard'
 import img from '../images/main.jpg'
 import Box from '@mui/material/Box';

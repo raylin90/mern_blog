@@ -61,7 +61,7 @@ class UserController {
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true})
         User.findById(decodedJWT.payload._id)
             .then(user => res.json(user))
-            .then(err => console.log("something went wrong when getting login user info", err))
+            .then(err => console.log("something went wrong when getting login user info"))
     }
 
     logout(req, res) {
