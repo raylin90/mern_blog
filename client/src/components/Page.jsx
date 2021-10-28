@@ -7,6 +7,10 @@ import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { blogsCreators } from '../states/types'
 import { navigate } from '@reach/router';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+import dateFormat from "dateformat";
+
 
 const Page = props => {
 
@@ -18,12 +22,14 @@ const Page = props => {
     return(
         <Paper elevation={2} sx={{ padding: "20px", minHeight: "100vh"}}>
             <Typography variant="h3">{blog.title}</Typography>
+            <Typography variant="subtitle2" color="initial">{dateFormat(blog.createdAt, "mmmm dS, yyyy")}</Typography>
+            <Typography variant="h5" sx={{ fontStyle: "italic" }}>{blog.description}</Typography>
             <br/>
             <img src={blog.url} alt="broken img" style={{maxWidth: "50vw"}}/>
 
             <Box sx={{ '& button': { m: 0.5 } }}>
-                <Button onClick={()=>navigate(`/blog/update/${blog._id}`)} variant="outlined" color="success" size="small">Update</Button>
-                <Button onClick={()=>deleteBlog(`${blog._id}`)} variant="outlined" color="error" size="small">Delete</Button>
+                <Button onClick={()=>navigate(`/blog/update/${blog._id}`)} variant="outlined" color="success" size="small"><EditIcon/></Button>
+                <Button onClick={()=>deleteBlog(`${blog._id}`)} variant="outlined" color="error" size="small"><DeleteForeverIcon/></Button>
             </Box>
             <br />
             <Typography variant="body1" dangerouslySetInnerHTML={{ __html: blog.sanitizedContent }}></Typography>

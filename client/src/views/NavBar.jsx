@@ -23,8 +23,7 @@ const Navbar = props => {
         
     return(
         <>
-
-        <Box sx={{ flexGrow: 1 }} sx={{color: "#e5ffff"}}>
+        <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static"  >
                 <Toolbar>
                     <IconButton size="large" edge="start" sx={{ mr: 0.5 }}>

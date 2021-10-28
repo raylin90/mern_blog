@@ -32,6 +32,7 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 // import all routes
 const BlogRoutes = require("./server/routes/blog.routes")(app);
 const UserRoutes = require("./server/routes/user.routes")(app);
+const CommentRoutes = require("./server/routes/comment.routes")(app);
 
 // we need to start our server
 const server = app.listen(port, () => console.log(`Running on port ${port}!!`));

@@ -5,6 +5,7 @@ const createDomPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 // allow dompurify to create HTML page by using JSDOM window
 const dompurify = createDomPurify(new JSDOM().window)
+const Comment = require('./comment.model');
 
 // this is where we make our model
 const BlogSchema = new mongoose.Schema({
@@ -29,7 +30,9 @@ const BlogSchema = new mongoose.Schema({
     sanitizedContent: {
         type: String,
         required: true,
-    }
+    },
+    // subdoc into the BlogSchema
+    comments: [Comment.schema],
 }, { timestamps: true })
 
 // convert the content to marked down HTML
