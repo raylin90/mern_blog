@@ -23,6 +23,7 @@ const UpdateBlog = props => {
                 setMyForm(res.data)
             })
             .catch(err => console.log("something went wrong when getting one blog", err))
+            // eslint-disable-next-line
     }, [])
 
     // extract updateBlog axios call from reducer

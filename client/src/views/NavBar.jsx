@@ -17,7 +17,6 @@ const Navbar = props => {
 
     // check redux if any user obj in there
     const isUserLogin = useSelector(state => state.auth)
-    console.log("IM checking at navvar", isUserLogin)
         
     return(
         <>

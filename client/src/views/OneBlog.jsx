@@ -12,6 +12,7 @@ const OneBlog = props => {
 
     useEffect(() => {
         getOneBlog(`${props._id}`)
+        // eslint-disable-next-line
     }, [])
 
     const oneBlog = useSelector(state => state.oneBlog)

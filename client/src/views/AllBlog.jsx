@@ -19,11 +19,9 @@ const AllBlog = props => {
     // console.log(getAllBlogs);
     // console.log(getOneBlogs);
 
-    const { authUserLoggedIn } = bindActionCreators(authCreators, dispatch)
-
     useEffect(() => {
         getAllBlogs();
-        authUserLoggedIn();
+        // eslint-disable-next-line
     }, [])
 
     return(

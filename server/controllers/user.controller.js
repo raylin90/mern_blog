@@ -65,7 +65,7 @@ class UserController {
     }
 
     logout(req, res) {
-        console.log(res)
+        // console.log(res)
         res.clearCookie("usertoken");
         res.sendStatus(200);
     

@@ -6,7 +6,7 @@ export const authRegister = form => {
     return(dispatch) => {
         return axios.post("http://localhost:8000/api/user/register", form, { withCredentials: true })
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 if(res.data.errors) {
                     dispatch({
                         type: "ERRORS",
@@ -34,6 +34,11 @@ export const authLogin = form => {
                     })
                 } else {
                     console.log("user logged in")
+                    // so frontend can immediately swap login/register with logout
+                    dispatch({
+                        type: "GET_USER",
+                        payload: res.data,
+                    })
                     navigate("/");
                 }
             })
@@ -46,7 +51,7 @@ export const authUserLoggedIn = () => {
     return(dispatch) => {
         return axios.get("http://localhost:8000/api/user/getloggedinuser", { withCredentials: true })
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 dispatch({
                     type: "GET_USER",
                     payload: res.data,
@@ -62,9 +67,14 @@ export const authLogout = () => {
     return(dispatch) => {
         return axios.get("http://localhost:8000/api/user/logout", { withCredentials: true })
             .then(res => {
-                console.log("user logged", res);
+                // console.log("user logged", res);
+                // frontend can swap back to login/register instead of logout
+                dispatch({
+                    type: "NULL_USER",
+                    payload: null,
+                })
                 navigate("/login");
-                console.log("redirect")
+                // console.log("redirect")
             })
             .catch(err => console.log("something went wrong when logout user", err))
     }
