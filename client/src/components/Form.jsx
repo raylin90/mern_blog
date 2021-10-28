@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Marked from './Marked';
 
 const Form = props => {
 
     const { submitHandler, changeHandler, myForm, errors } = props
-    
+
+
     return(
+        <>
+        <Marked/>
         <form >
             <FormControl sx={{ m: 1.5, width: "60vw" }} >
                 <InputLabel htmlFor="title">Title</InputLabel>
@@ -54,6 +58,7 @@ const Form = props => {
                 <Button variant="contained" onClick={ submitHandler }>Submit</Button>
             </FormControl>
         </form>
+        </>
     );
 }
 

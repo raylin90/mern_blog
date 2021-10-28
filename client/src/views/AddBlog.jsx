@@ -6,10 +6,6 @@ import { blogsCreators } from '../states/types'
 
 const AddBlog = props => {
 
-    // check redux if any user obj in there
-    const isUserLogin = useSelector(state => state.auth)
-    console.log("IM checking at write", isUserLogin)
-
     const errors = useSelector(state => state.errors)
     // console.log(errors)
 
