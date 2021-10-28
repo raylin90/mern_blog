@@ -12,5 +12,5 @@ module.exports = app => {
     // UPDATE
     app.put("/api/blog/update/:_id", BlogController.updateOne);
     // DELETE
-    app.delete("/api/blog/delete/:_id", BlogController.deleteOne);
+    app.get("/api/blog/delete/:_id", BlogController.deleteOne);
 }

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 // import secreat key from .env file
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+const Cookies = require('cookie-parser');
 
 class UserController {
     register(req, res) {
@@ -20,6 +21,7 @@ class UserController {
     }
 
     login(req, res) {
+        console.log("hello world")
         User.findOne({ email: req.body.email })
             .then(user => {
                 if(user === null) {
@@ -41,10 +43,17 @@ class UserController {
     }
 
     getLoggedInUser(req, res) {
-        const decodedJWT = jwt.decode(req.cookie.usertoken, {complete: true})
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true})
         User.findById(decodedJWT.payload._id)
             .then(user => res.json(user))
             .then(err => console.log("something went wrong when getting login user info", err))
+    }
+
+    logout(req, res) {
+        console.log(res)
+        res.clearCookie("usertoken");
+        res.sendStatus(200);
+    
     }
 }
 
