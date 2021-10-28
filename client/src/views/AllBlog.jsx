@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { blogsCreators, usersCreators } from '../states/types'
+import { blogsCreators, authCreators } from '../states/types'
 import MediaCard from '../components/MediaCard'
 import img from '../images/main.jpg'
 import Box from '@mui/material/Box';
-import axios from 'axios';
+
 
 const AllBlog = props => {
 
@@ -20,16 +20,12 @@ const AllBlog = props => {
     // console.log(getAllBlogs);
     // console.log(getOneBlogs);
 
-    const { getLoginUser } = bindActionCreators(usersCreators, dispatch)
+    const { authUserLoggedIn } = bindActionCreators(authCreators, dispatch)
+    const isUserLogin = useSelector(state => state.auth)
 
     useEffect(() => {
-        // make axios fetch call to get all blogs from database
         getAllBlogs();
-        axios.get("http://localhost:8000/api/user/getloggedinuser", { withCredentials: true })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => console.log("something went wrong when getting login user info. ", err))
+        authUserLoggedIn();
     }, [])
 
     return(

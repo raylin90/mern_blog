@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import blogsReducer from './blogsReducer';
 import errorsReducer from './errorsReducer';
 import oneBlogReducer from './oneBlogReducer';
-import userReducer from './userReducer';
+import authReducer from './authReducer';
 
 // combine all states and reducers
 const reducers = combineReducers({
@@ -10,7 +10,7 @@ const reducers = combineReducers({
     blogs: blogsReducer,
     oneBlog: oneBlogReducer,
     errors: errorsReducer,
-    user: userReducer,
+    auth: authReducer,
 })
 
 export default reducers;

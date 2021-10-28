@@ -2,33 +2,45 @@
 const express = require('express');
 // bring CORS for cross origin requests
 const cors = require("cors");
-// cookie allows us to create, read, work with cookie, which we used for AUTH
-const cookies = require('cookie-parser');
 // we need to create our app that gets everything running (start server, go to routes, do features and functionalities)
 const app = express();
 // set up our port in a variable
 const port = 8000;
+// cookie allows us to create, read, work with cookie, which we used for Auth
+const cookies = require('cookie-parser');
 
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // //
+// // // // // // // // // // AUTH W/ COOKIE // // // // // // // // // // // // //
+// // // // // // // // // // // // // // // // // // // // // // // // // // // //
 // Cors allows us to connect two localhosts together, the obj allows for Auth
 app.use(cors({
     credentials: true,
     origin: "http://localhost:3000"
 }));
+// impprt .env file from root
 require('dotenv').config();
+// allow app to use cookiess
+app.use(cookies());
+
+
 
 // Establish connection with db
 require("./server/config/mongoose.config");
-
 // you MUST have this if you are working with POST requests
 app.use(express.json(), express.urlencoded({ extended: true }));
-// allow app to use cookiess
-app.use(cookies());
 // import all routes
 const BlogRoutes = require("./server/routes/blog.routes")(app);
 const UserRoutes = require("./server/routes/user.routes")(app);
 
 // we need to start our server
 const server = app.listen(port, () => console.log(`Running on port ${port}!!`));
+
+
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // //
+// // // // // // // // // // BELOW FOR SOCKET  // // // // // // // // // // // //
+// // // // // // // // // // // // // // // // // // // // // // // // // // // //
 // hookup our server to socket
 const io = require("socket.io")(server, {cors: true});
 // how socket works?
@@ -40,7 +52,7 @@ io.on("connect", socket=> {
     // got the input from frontend
     socket.on("chat", inputMsg => {
         console.log("I got the message", inputMsg)
-        // show to everyone's screen
+        // show to everyone's screen, passback to frontend
         io.emit("send chat", inputMsg);
     })
 })

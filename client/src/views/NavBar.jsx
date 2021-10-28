@@ -5,16 +5,15 @@ import Grid from '@mui/material/Grid';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Typography from '@mui/material/Typography';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { authCreators } from '../states/types'
 
 const Navbar = props => {
 
-    const logout = () => {
-        console.log("logout")
-        axios.get("http://localhost:8000/api/user/logout", { withCredentials: true })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-    }
+    const dispatch = useDispatch()
+    const { authLogout } = bindActionCreators(authCreators, dispatch)
+
     return(
         <>
         <Box
@@ -50,8 +49,7 @@ const Navbar = props => {
             <Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <Link href="/login" underline="hover" color="#616161">Login</Link>&nbsp;&nbsp;
                 <Link href="/register" underline="hover" color="#616161">Register</Link>
-                <button onClick={ logout}>Lougout</button>
-                <Link href="#" onClick={logout}underline="hover" color="#616161">Lougout</Link>
+                <Link onClick={ authLogout }underline="hover" color="#616161">Lougout</Link>
             </Grid>
 
             <Grid item xs={1}/>
