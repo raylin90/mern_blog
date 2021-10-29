@@ -10,13 +10,14 @@ import { navigate } from '@reach/router';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import dateFormat from 'dateformat';
-import Comment from './Comment';
+import AddComment from './AddComment';
 import Grid from '@mui/material/Grid';
+
 
 const Page = props => {
 
     const { blog } = props;
-    console.log(blog)
+
     const dispatch = useDispatch()
     const { deleteBlog } = bindActionCreators(blogsCreators, dispatch)
 
@@ -32,8 +33,9 @@ const Page = props => {
             <Grid container spacing={2}>
 
                 <Grid item xs={9}>
+
                     <Typography variant="h3">{blog.title}</Typography>
-                    <Typography variant="subtitle2" color="initial">{dateFormat(blog.createdAt, "mmmm dS, yyyy")}</Typography>
+                    <Typography variant="subtitle2">{dateFormat(blog.createdAt, "mmmm dS, yyyy")}</Typography>
                     <Typography variant="h5" sx={{ fontStyle: "italic" }}>{blog.description}</Typography>
                     <br/>
                     <img src={blog.url} alt="broken img" style={{maxWidth: "50vw"}}/>
@@ -43,9 +45,29 @@ const Page = props => {
                     </Box>
                     <br />
                     <Typography variant="body1" dangerouslySetInnerHTML={{ __html: blog.sanitizedContent }}></Typography>
+                    {
+                        blog.comments[0] ? 
+                        <>
+                        <Typography variant="h5">Comments: </Typography>
+                            {
+                                blog.comments.map((comment, i) => 
+                                <Box key={i} sx={{ backgroundColor: "#efefef", "&:hover": { backgroundColor: "#90a4ae", opacity: [0.9, 0.8, 0.7], }, padding: "5px"}}>
+                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                                        {
+                                            comment.name ? <Typography variant="subtitle1">Replied by: {comment.name}</Typography> : "Replied by: Anonymous"
+                                        }
+                                        <Typography variant="subtitle2"><small>{dateFormat(comment.createdAt, "mm/dd/yyyy")}</small></Typography>
+                                    </div>
+                                    <Typography variant="body1">{comment.text}</Typography>
+                                    <br />
+                                </Box>) 
+                            }
+                        </>
+                        : ""
+                    }
                 </Grid>
                 <Grid item xs={3} style={ stickyElement }>
-                    <Comment blogId={ blog._id }/>
+                    <AddComment blogId={ blog._id } refreshPage={ props.refreshPage } setRefreshPage={ props.setRefreshPage }  />
                 </Grid>
 
             </Grid>

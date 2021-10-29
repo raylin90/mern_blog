@@ -11,7 +11,7 @@ const CommentSchema = new mongoose.Schema({
     },
     text: {
         type: String,
-        required: [true, "Content is required"],
+        required: [true, "Msg. is required"],
         minlength: [10, "Minimun length should be at least 10 characters"]
     },
     

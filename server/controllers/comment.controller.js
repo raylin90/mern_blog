@@ -26,7 +26,7 @@ module.exports.findOne = (req, res) => {
 
 // UPDATE
 module.exports.appendComment = (req, res) => {
-    Blog.findOneAndUpdate( {_id : req.params._id}, { $push: { comments: req.body} }, {useFindAndModify: false})
+    Blog.findOneAndUpdate( {_id : req.params._id}, { $push: { comments: req.body} }, {runValidators: true})
         .then(oneBlog => res.json(oneBlog))
         .catch(err => res.json({message: "something went wrong when finding one blog", error: err}));
 }
@@ -36,4 +36,13 @@ module.exports.appendComment = (req, res) => {
 //     Comment.deleteOne({_id : req.params._id})
 //         .then(res.json({message: "comment was sucessfully deleted"}))
 //         .catch(err => res.json({message: "something went wrong when deleting one Comment", error: err}));
+// }
+
+
+
+
+// module.exports.appendComment = (req, res) => {
+//     Blog.findOneAndUpdate( {_id : req.params._id}, { $push: { comments: req.body} }, {useFindAndModify: false}, {runValidators: true})
+//         .then(oneBlog => res.json(oneBlog))
+//         .catch(err => res.json({message: "something went wrong when finding one blog", error: err}));
 // }
