@@ -11,6 +11,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { authCreators } from './states/types'
+import About from './views/About';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <AddBlog path="/blog/write"/>
           <UpdateBlog path="/blog/update/:_id"/>
           <ChatBox path="/chat"/>
+          <About path="/about"/>
 
           <Login path="/login"/>
           <Register path="register"/>
