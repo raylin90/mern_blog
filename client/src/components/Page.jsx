@@ -45,6 +45,7 @@ const Page = props => {
                     </Box>
                     <br />
                     <Typography variant="body1" dangerouslySetInnerHTML={{ __html: blog.sanitizedContent }}></Typography>
+                    <br /><br />
                     {
                         blog.comments[0] ? 
                         <>

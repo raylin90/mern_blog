@@ -48,6 +48,22 @@ const io = require("socket.io")(server, {cors: true});
 // step 1: you need to emit a message (emitters: send your data)
 // step 2: something has to response when you emit a message (on: trigger, listenning for a particular event, and when that event happends, we perform an action)
 // code that listens for the moment someone enter the webpage(onetime event, if you refresh, it will dis-connect)
+
+
+// io.on("connect", socket=> {
+//     console.log(socket.id)
+//     // got the input from frontend
+//     socket.on("chat", inputMsg => {
+//         console.log("I got the message", inputMsg)
+//         // show to everyone's screen, passback to frontend
+//         io.emit("send chat", inputMsg);
+//     })
+// })
+
+
+
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./server/User");
+// whenever a user joined the socket, connect event will be fired.
 io.on("connect", socket=> {
     console.log(socket.id)
     // got the input from frontend
@@ -55,5 +71,52 @@ io.on("connect", socket=> {
         console.log("I got the message", inputMsg)
         // show to everyone's screen, passback to frontend
         io.emit("send chat", inputMsg);
+    })
+    
+    // emit join event
+    socket.on("join", name => {
+        console.log("I got the name and room from backend ", name, ' and ')
+        // console.log(callback)
+        // const { error, user } = addUser({
+        //     id: socket.id, name, room
+        // });
+        // if(error) return callback(error);
+
+        // // Emit will send message to the user
+        // // who had joined
+        // socket.emit("message", {user: "admin", text: `${user.name}, welcome to romm ${user.room}`})
+
+        // // Broadcast will send message to everyone
+        // // in the room except the joined user
+        // socket.broadcast.to(user.room)
+        //     .emit("message", {user: "admin", text: `${username}, has joined`});
+
+        // socket.join(user.room);
+
+        // io.to(user.room).emit("roomData", {
+        //     room: user.room,
+        //     user: getUsersInRoom(user.toom)
+        // });
+
+        // callback();
+    })
+
+    // when any user send the message from input in chat, this event will fire, and message added inside the array with username
+    socket.on("sendMessage", message => {
+        console.log("I have got the message " , message )
+        const user = getUser(socket.id);
+        io.emit("message", {user: user, text: message});
+        // io.to(user.room).emit("message", {user:user.name, text: message});
+        // io.to(user.toom).emit("roomData", {room: user.room, users: getUserInRoom(user.room)});
+    })
+
+    // when user leaves the chat, user removed from the array fof users
+    socket.on("userLeft", ()=> {
+        const user = removeUser(socket.id);
+        if(user) {
+            io.to(user.room).emit("message", {
+                user: "admin", text: `${user.name} had left`
+            });
+        }
     })
 })

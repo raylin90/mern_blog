@@ -32,6 +32,7 @@ const ChatBox = props => {
 
     return(
         <>
+        {props.user}
         <h1>This is my ChatBox Page</h1>
         <form onSubmit={ submitHandler }>
             <input type="text" name="msg" autoComplete="on" value={ input } onChange={ changeHandler }/>

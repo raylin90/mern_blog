@@ -2,14 +2,13 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import EmailIcon from '@mui/icons-material/Email';
-import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const About = porps => {
     return(
         <div style={{ padding: "20px", height: "80vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
-            <img src="http://www.friendlyautosale.net/application/modules/themes/views/default/assets/images/image-placeholder.png" alt="personal img" style={{ width: "300px", marginRight: "60px"}}/>
+            <img src="https://cdn.cms-twdigitalassets.com/content/dam/blog-twitter/official/en_us/products/2017/rethinking-our-default-profile-photo/Avatar-Blog2-Round1.png.img.fullhd.medium.png" alt="personal img" style={{ width: "300px", marginRight: "60px"}}/>
             <div >
                 <div style={{ width: "500px"}}>
                     <Typography variant="h5">Hi, My name is</Typography>

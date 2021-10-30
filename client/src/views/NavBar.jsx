@@ -35,7 +35,7 @@ const Navbar = props => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 3 }}></Typography>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}><Link href="/" underline="hover" color="#424242">HOME</Link></Typography>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}><Link href="/blog/write" underline="hover" color="#424242">WRITE</Link></Typography>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}><Link href="/chat" underline="hover" color="#424242">CHAT</Link></Typography>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}><Link href="/joinchat" underline="hover" color="#424242">CHAT</Link></Typography>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}><Link href="/about" underline="hover" color="#424242">ABOUT</Link></Typography>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 3 }}></Typography>
                     {
