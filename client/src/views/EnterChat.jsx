@@ -4,7 +4,6 @@ import Paper from '@mui/material/Paper';
 import Input from '@mui/material/Input';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 
 const EnterChat = props => {
 

@@ -17,7 +17,6 @@ const OneBlog = props => {
     }, [refreshPage])
 
     const oneBlog = useSelector(state => state.oneBlog)
-    // console.log(oneBlog.state)
 
     return(
         <>

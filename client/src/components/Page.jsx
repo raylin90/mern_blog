@@ -12,7 +12,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import dateFormat from 'dateformat';
 import AddComment from './AddComment';
 import Grid from '@mui/material/Grid';
-
+import { useSelector } from 'react-redux';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import axios from 'axios';
 
 const Page = props => {
 
@@ -20,11 +22,18 @@ const Page = props => {
 
     const dispatch = useDispatch()
     const { deleteBlog } = bindActionCreators(blogsCreators, dispatch)
-
+    const loginUser = useSelector(state => state.auth)
     const stickyElement = {
         position: "fixed",
         top: 100,
         right: 20,
+    }
+
+    const deleteComment = (blogId, commentId) => {
+        axios.delete(`http://localhost:8000/api/comment/delete/${commentId}/blog/${blogId}`)
+            .then(res => console.log("deleted"))
+            .catch(err => console.log("something went wrong when deleting a comment", err))
+            props.setRefreshPage(!props.refreshPage)
     }
 
     return(
@@ -60,6 +69,10 @@ const Page = props => {
                                         <Typography variant="subtitle2"><small>{dateFormat(comment.createdAt, "mm/dd/yyyy")}</small></Typography>
                                     </div>
                                     <Typography variant="body1">{comment.text}</Typography>
+                                    <p>{comment._id}</p>
+                                    {
+                                        loginUser.state ? loginUser.state.email === comment.email ? <HighlightOffIcon value={i} onClick={ ()=> deleteComment(`${blog._id}`, `${comment._id}`) } fontSize="small" color="error" />: "" : ""
+                                    }
                                     <br />
                                 </Box>) 
                             }

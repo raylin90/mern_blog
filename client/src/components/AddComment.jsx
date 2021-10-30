@@ -37,7 +37,7 @@ const AddComment = props => {
     }
 
     const changeHandler = e => {
-        loginUser.state ? setComment({...comment, text : e.target.value, name: loginUser.state.firstName}) : setComment({...comment, [e.target.name] : e.target.value})
+        loginUser.state ? setComment({...comment, text : e.target.value, name: loginUser.state.firstName, email: loginUser.state.email}) : setComment({...comment, [e.target.name] : e.target.value})
     }
 
     return(
