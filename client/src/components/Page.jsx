@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -15,11 +15,16 @@ import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import axios from 'axios';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle'
+import Input from '@mui/material/Input';
 
 const Page = props => {
 
     const { blog } = props;
-
     const dispatch = useDispatch()
     const { deleteBlog } = bindActionCreators(blogsCreators, dispatch)
     const loginUser = useSelector(state => state.auth)
@@ -35,6 +40,19 @@ const Page = props => {
             .catch(err => console.log("something went wrong when deleting a comment", err))
             props.setRefreshPage(!props.refreshPage)
     }
+
+    const updateComment = (blogId, commentId) => {
+        console.log(blogId, commentId)
+    }
+    
+    const [text, setText] = useState("")
+    const [open, setOpen] = useState(false);
+    const handleClickOpen = e => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return(
         <Paper elevation={2} sx={{ padding: "20px", minHeight: "100vh"}}>
@@ -61,7 +79,7 @@ const Page = props => {
                         <Typography variant="h5">Comments: </Typography>
                             {
                                 blog.comments.map((comment, i) => 
-                                <Box key={i} sx={{ backgroundColor: "#efefef", "&:hover": { backgroundColor: "#90a4ae", opacity: [0.9, 0.8, 0.7], }, padding: "5px"}}>
+                                <Box key={i} sx={{ backgroundColor: "#efefef", padding: "5px"}}>
                                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                                         {
                                             comment.name ? <Typography variant="subtitle1">Replied by: {comment.name}</Typography> : "Replied by: Anonymous"
@@ -69,9 +87,32 @@ const Page = props => {
                                         <Typography variant="subtitle2"><small>{dateFormat(comment.createdAt, "mm/dd/yyyy")}</small></Typography>
                                     </div>
                                     <Typography variant="body1">{comment.text}</Typography>
-                                    <p>{comment._id}</p>
                                     {
-                                        loginUser.state ? loginUser.state.email === comment.email ? <HighlightOffIcon value={i} onClick={ ()=> deleteComment(`${blog._id}`, `${comment._id}`) } fontSize="small" color="error" />: "" : ""
+                                        loginUser.state ? loginUser.state.email === comment.email ? 
+                                        <>
+                                        <EditIcon onClick={()=>updateComment(`${blog._id}`, `${comment._id}`)} onClick={handleClickOpen} fontSize="small" color="success"/>
+
+                                        <Dialog
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description">
+
+                                            <DialogTitle id="alert-dialog-title">Update Comment</DialogTitle>
+                                            <DialogContent>
+                                                <DialogContentText id="alert-dialog-description">
+                                                    <input type="text" name="text" onChange={e=>setText(e.target.value)} />
+                                                </DialogContentText>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={handleClose}>Cancel</Button>
+                                                <Button onClick={handleClose} autoFocus>Submit</Button>
+                                            </DialogActions>
+                                        </Dialog>
+
+
+                                        <HighlightOffIcon onClick={()=>deleteComment(`${blog._id}`, `${comment._id}`)} fontSize="small" color="error" />
+                                        </>: "" : ""
                                     }
                                     <br />
                                 </Box>) 
@@ -83,7 +124,6 @@ const Page = props => {
                 <Grid item xs={3} style={ stickyElement }>
                     <AddComment blogId={ blog._id } refreshPage={ props.refreshPage } setRefreshPage={ props.setRefreshPage }  />
                 </Grid>
-
             </Grid>
         </Paper>
     );
