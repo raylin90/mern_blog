@@ -74,7 +74,7 @@ const AddComment = props => {
                     </FormControl>
                     <br />
                     <FormControl >
-                        <InputLabel htmlFor="email">Email <small>-optional</small></InputLabel>
+                        <InputLabel htmlFor="email">Email <small>- we won't share it</small></InputLabel>
                         <Input sx={{ m: 1, width: "150%" }} name="email" onChange={ changeHandler } value={ comment.email}/>
                     </FormControl>
                     <br />

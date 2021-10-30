@@ -7,7 +7,7 @@ const Blog = require("../models/blog.model");
 module.exports.appendComment = (req, res) => {
     Blog.findOneAndUpdate( {_id : req.params._id}, { $push: { comments: req.body} }, {runValidators: true})
         .then(oneBlog => res.json(oneBlog))
-        .catch(err => res.json({message: "something went wrong when finding one blog", error: err}));
+        .catch(err => res.json({message: "something went wrong when adding a Comment", error: err}));
 }
 
 // DELETE

@@ -42,7 +42,7 @@ const ChatBox = props => {
 
     return(
         <>
-        <Paper elevation={3} sx={{height: "80vh", overflow: "scroll", padding: "20px"}} >
+        <Paper elevation={3} sx={{height: "88vh", overflow: "scroll", padding: "20px"}} >
         <form>
             <Input name="txt" autoComplete="off" onChange={changeHandler} sx={{width: "91vw"}} value={ input.txt } placeholder="enter your msg here"/>
             <Button variant="contained" onClick={ submitHandler }>Send</Button>

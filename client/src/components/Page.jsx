@@ -20,7 +20,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle'
-import Input from '@mui/material/Input';
 
 const Page = props => {
 
@@ -63,7 +62,7 @@ const Page = props => {
     }
 
     return(
-        <Paper elevation={2} sx={{ padding: "20px", minHeight: "100vh"}}>
+        <Paper elevation={2} sx={{ padding: "20px", minHeight: "88vh"}}>
 
             <Grid container spacing={2}>
 
@@ -108,7 +107,7 @@ const Page = props => {
                                             <DialogTitle id="alert-dialog-title">Update Comment</DialogTitle>
                                             <DialogContent>
                                                 <DialogContentText id="alert-dialog-description">
-                                                    <input type="text" name="text" onChange={e=>setText(e.target.value)} />
+                                                    <input type="text" name="text" onChange={e=>setText(e.target.value)} style={{width: "500px"}}/>
                                                 </DialogContentText>
                                             </DialogContent>
                                             <DialogActions>

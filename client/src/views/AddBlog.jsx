@@ -29,7 +29,7 @@ const AddBlog = props => {
     }
 
     return(
-        <div style={{ padding: "20px", minHeight: "100vh"}}>
+        <div style={{ padding: "20px", minHeight: "88vh"}}>
         <Form submitHandler={ submitHandler } changeHandler={ changeHandler } myForm={ myForm } errors={ errors.state}/>
         </div>
     );

@@ -42,7 +42,7 @@ const UpdateBlog = props => {
     }
 
     return(
-        <div style={{ padding: "20px", minHeight: "100vh"}} onLoad={e => console.log("onload event ", e)}>
+        <div style={{ padding: "20px", minHeight: "88vh"}} onLoad={e => console.log("onload event ", e)}>
         <Form submitHandler={ submitHandler } changeHandler={ changeHandler } myForm={ myForm } errors={ errors.state}/>
         </div>
     );

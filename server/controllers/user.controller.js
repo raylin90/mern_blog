@@ -68,7 +68,6 @@ class UserController {
         // console.log(res)
         res.clearCookie("usertoken");
         res.sendStatus(200);
-    
     }
 }
 

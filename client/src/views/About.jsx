@@ -7,7 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const About = porps => {
     return(
-        <div style={{ padding: "20px", height: "80vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <div style={{ padding: "20px", minHeight: "88vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
             <img src="https://cdn.cms-twdigitalassets.com/content/dam/blog-twitter/official/en_us/products/2017/rethinking-our-default-profile-photo/Avatar-Blog2-Round1.png.img.fullhd.medium.png" alt="personal img" style={{ width: "300px", marginRight: "60px"}}/>
             <div >
                 <div style={{ width: "500px"}}>

@@ -25,14 +25,14 @@ const AllBlog = props => {
     }, [])
 
     return(
-        <>
+        <div style={{minHeight: "91vh"}}>
         <img src={img} alt="main img" style={{width: "99vw", height: "50vh", objectFit: "cover"}} />
         <Box sx={{ display: "flex", flexWrap: 'wrap' }}>
         {
             blogs.state ? blogs.state.map((blog, i) => <MediaCard key={i} blog={blog}/>) : ""
         }
         </Box>
-        </>
+        </div>
     );
 }
 

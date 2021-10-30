@@ -32,7 +32,7 @@ const Register = props => {
     }
 
     return(
-        <div style={{ padding: "20px", width: "500px"}}>
+        <div style={{ padding: "20px", width: "500px", minHeight: "88vh"}}>
             <h1>This is my Register Route</h1>
             <form >
                 <FormControl sx={{ m: 1.5, width: "500px" }} >

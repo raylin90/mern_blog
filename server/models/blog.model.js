@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 // const marked = require('marked')
 const createDomPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
+// import marked for marked language
+const marked = require('marked')
 // allow dompurify to create HTML page by using JSDOM window
 const dompurify = createDomPurify(new JSDOM().window)
 const Comment = require('./comment.model');
@@ -37,7 +39,9 @@ const BlogSchema = new mongoose.Schema({
 
 // convert the content to marked down HTML
 BlogSchema.pre("validate", function(next) {
+    console.log("hello")
     if(this.content) {
+        console.log(this.content)
         this.sanitizedContent = dompurify.sanitize(marked(this.content));
     }
     next();

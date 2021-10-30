@@ -14,7 +14,7 @@ const EnterChat = props => {
 
     return(
         <> 
-        <Paper elevation={3} sx={{height: "95vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <Paper elevation={3} sx={{minHeight: "91vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
             <form>
                 <FormControl sx={{ m: 1.5, width: "60vw" }} >
                     <Input name="userForChat" placeholder="Enter a name for chatbox (required)" onChange={e=>setUser(e.target.value)}/>
