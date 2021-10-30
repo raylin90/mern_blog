@@ -13,8 +13,6 @@ import { bindActionCreators } from 'redux';
 import { authCreators } from './states/types'
 import About from './views/About';
 import ChatBox from './components/ChatBox';
-import Chat from './components/Chat/Chat';
-import Join from './components/Join/Join';
 
 function App() {
 

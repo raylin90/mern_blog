@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
+import Paper from '@mui/material/Paper';
 
 const ChatBox = props => {
 
@@ -24,9 +28,12 @@ const ChatBox = props => {
     }, [socket])
 
     const submitHandler = e => {
-        e.preventDefault();
         // emit the message to everyone, which is stored at input
-        socket.emit("chat", input)
+        input.txt ? socket.emit("chat", input): e.preventDefault();
+        setInput({
+            name: props.user,
+            txt: "",
+        })
     }
 
     const changeHandler = e => {
@@ -35,21 +42,22 @@ const ChatBox = props => {
 
     return(
         <>
-        {props.user}
-        <h1>This is my ChatBox Page</h1>
-        <form onSubmit={ submitHandler }>
-            <input type="text" name="txt" autoComplete="on" value={ input.input } onChange={ changeHandler }/>
-            <input type="submit" value="Submit" />
+        <Paper elevation={3} sx={{height: "80vh", overflow: "scroll", padding: "20px"}} >
+        <form>
+            <Input name="txt" autoComplete="off" onChange={changeHandler} sx={{width: "91vw"}} value={ input.txt } placeholder="enter your msg here"/>
+            <Button variant="contained" onClick={ submitHandler }>Send</Button>
         </form>
-        <hr />
+        <br />
         {
             messages.map((msg, i) => 
                 <div key={i}>
-                <p>{msg.txt}</p>
-                <p>{msg.name}</p>
+                <Typography variant="body1" sx={{border: "1px solid", borderRadius: "15px", display: "inline-block", paddingLeft: "8px", paddingRight: "8px", backgroundColor: "#efefef"}}>{msg.txt}</Typography>
+                <br />
+                <Typography color="primary" variant="caption">&nbsp;&nbsp;- {msg.name}</Typography>
                 </div>
             )
         }
+        </Paper>
         </>
     );
 }

@@ -4,12 +4,13 @@ import Paper from '@mui/material/Paper';
 import Input from '@mui/material/Input';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const EnterChat = props => {
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState("")
     const submitHandler = e => {
-        navigate(`/chatroom/${user}`)
+        user.trim() ? navigate(`/chatroom/${user}`) : e.preventDefault();
     }
 
     return(
@@ -17,7 +18,7 @@ const EnterChat = props => {
         <Paper elevation={3} sx={{height: "95vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
             <form>
                 <FormControl sx={{ m: 1.5, width: "60vw" }} >
-                    <Input name="userForChat" placeholder="Enter a name for chatbox" onChange={e=>setUser(e.target.value)}/>
+                    <Input name="userForChat" placeholder="Enter a name for chatbox (required)" onChange={e=>setUser(e.target.value)}/>
                 </FormControl>
                 <br />
                 <Button variant="contained" color="success" fullWidth onClick={ submitHandler }>Enter</Button>
