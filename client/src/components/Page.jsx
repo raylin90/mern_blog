@@ -41,10 +41,6 @@ const Page = props => {
             props.setRefreshPage(!props.refreshPage)
     }
 
-    const updateComment = (blogId, commentId) => {
-        console.log(blogId, commentId)
-    }
-    
     const [text, setText] = useState("")
     const [open, setOpen] = useState(false);
     const handleClickOpen = e => {
@@ -53,6 +49,18 @@ const Page = props => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const updateComment = (blogId, commentId) => {
+        if(text.length < 10) {
+            alert("comment need more than 10")
+        } else {
+            axios.post(`http://localhost:8000/api/comment/edit/${commentId}/blog/${blogId}`, {text: text})
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+            setOpen(false);
+            props.setRefreshPage(!props.refreshPage)
+        }
+    }
 
     return(
         <Paper elevation={2} sx={{ padding: "20px", minHeight: "100vh"}}>
@@ -90,14 +98,13 @@ const Page = props => {
                                     {
                                         loginUser.state ? loginUser.state.email === comment.email ? 
                                         <>
-                                        <EditIcon onClick={()=>updateComment(`${blog._id}`, `${comment._id}`)} onClick={handleClickOpen} fontSize="small" color="success"/>
+                                        <EditIcon onClick={handleClickOpen} fontSize="small" color="success"/>
 
                                         <Dialog
                                             open={open}
                                             onClose={handleClose}
                                             aria-labelledby="alert-dialog-title"
                                             aria-describedby="alert-dialog-description">
-
                                             <DialogTitle id="alert-dialog-title">Update Comment</DialogTitle>
                                             <DialogContent>
                                                 <DialogContentText id="alert-dialog-description">
@@ -106,10 +113,9 @@ const Page = props => {
                                             </DialogContent>
                                             <DialogActions>
                                                 <Button onClick={handleClose}>Cancel</Button>
-                                                <Button onClick={handleClose} autoFocus>Submit</Button>
+                                                <Button onClick={()=>updateComment(`${blog._id}`, `${comment._id}`)} autoFocus>Submit</Button>
                                             </DialogActions>
                                         </Dialog>
-
 
                                         <HighlightOffIcon onClick={()=>deleteComment(`${blog._id}`, `${comment._id}`)} fontSize="small" color="error" />
                                         </>: "" : ""
