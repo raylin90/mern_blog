@@ -6,10 +6,13 @@ const ChatBox = props => {
     // connection to backend server
     const [socket] = useState(()=> io(":8000"));
     // state to keep track of user input
-    const [input, setInput] = useState("")
+    const [input, setInput] = useState({
+        name: props.user,
+        txt: "",
+    })
     // array to hold the messages so we can display at fontend
     const [messages, setMessages] = useState([])
-
+    console.log(input)
     useEffect(() => {
         socket.on("send chat", inputMsg => {
             // console.log(inputMsg);
@@ -27,7 +30,7 @@ const ChatBox = props => {
     }
 
     const changeHandler = e => {
-        setInput(e.target.value)
+        setInput({...input, [e.target.name] : e.target.value})
     }
 
     return(
@@ -35,14 +38,17 @@ const ChatBox = props => {
         {props.user}
         <h1>This is my ChatBox Page</h1>
         <form onSubmit={ submitHandler }>
-            <input type="text" name="msg" autoComplete="on" value={ input } onChange={ changeHandler }/>
+            <input type="text" name="txt" autoComplete="on" value={ input.input } onChange={ changeHandler }/>
             <input type="submit" value="Submit" />
         </form>
         <hr />
         {
-            messages.map((msg, i) => {
-                return <p key={i}>{msg}</p>
-            })
+            messages.map((msg, i) => 
+                <div key={i}>
+                <p>{msg.txt}</p>
+                <p>{msg.name}</p>
+                </div>
+            )
         }
         </>
     );

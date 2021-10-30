@@ -34,14 +34,7 @@ function App() {
           <OneBlog path="/blog/:_id"/>
           <AddBlog path="/blog/write"/>
           <UpdateBlog path="/blog/update/:_id"/>
-
-
-          {/* <EnterChat path="/chat"/> */}
-
-          <Chat path="/chat/:name/:room" />
-          <Join path="/joinchat"/>
-
-
+          <EnterChat path="/joinchat"/>
           <ChatBox path="/chatroom/:user"/>
           <About path="/about"/>
 
