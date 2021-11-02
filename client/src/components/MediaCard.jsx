@@ -30,5 +30,5 @@ const MediaCard = props => {
         </Card>
     );
 }
-// color="text.secondary"
+
 export default MediaCard;

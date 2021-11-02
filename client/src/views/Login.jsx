@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { authCreators } from '../states/types'
+import Typography from '@mui/material/Typography';
 
 const Login = props => {
 
@@ -30,7 +31,7 @@ const Login = props => {
 
     return(
         <div style={{ padding: "20px", width: "500px", minHeight: "88vh"}}>
-            <h1>This is my Login Route</h1>
+            <Typography variant="h3">Login</Typography>
             <form >
                 <FormControl sx={{ m: 1.5, width: "500px" }} >
                     <InputLabel htmlFor="email">Email</InputLabel>
@@ -42,7 +43,7 @@ const Login = props => {
                     <Input type="password" name="password" onChange={changeHandler} />
                 </FormControl>
                 <br />
-                <Button variant="contained" sx={{marginLeft: "10px"}} fullWidth onClick={ submitHandler }>Submit</Button>
+                <Button variant="contained" sx={{marginLeft: "10px"}} fullWidth onClick={ submitHandler }>Login</Button>
                 <br /><br />
                 {
                     errors.state ? <FormHelperText sx={{ color: "#f44336", marginLeft: "10px" }}>{errors.state}</FormHelperText> : ""

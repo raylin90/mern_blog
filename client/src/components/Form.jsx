@@ -26,7 +26,7 @@ const Form = props => {
             <FormControl sx={{ m: 1.5, width: "60vw" }}>
                 <InputLabel htmlFor="url">Image</InputLabel>
                 <Input name="url" onChange={ changeHandler } value={ myForm.url }/>
-                <FormHelperText sx={{ color: "#f57c00" }}>***we only take .jpg or .png files***</FormHelperText>
+                <FormHelperText sx={{ color: "#f57c00" }}>***we only take .jpg or .png files, please use URL link***</FormHelperText>
                 {
                     errors ? errors.url ? <FormHelperText sx={{ color: "#f44336" }}>{errors.url.message}</FormHelperText> :"" : ""
                 }

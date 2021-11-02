@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { authCreators } from '../states/types'
+import Typography from '@mui/material/Typography';
 
 const Register = props => {
 
@@ -33,7 +34,7 @@ const Register = props => {
 
     return(
         <div style={{ padding: "20px", width: "500px", minHeight: "88vh"}}>
-            <h1>This is my Register Route</h1>
+            <Typography variant="h3">Register</Typography>
             <form >
                 <FormControl sx={{ m: 1.5, width: "500px" }} >
                     <InputLabel htmlFor="firstName">First Name</InputLabel>
@@ -75,7 +76,7 @@ const Register = props => {
                     }
                 </FormControl>
                 <br />
-                <Button variant="contained" sx={{marginLeft: "10px"}} fullWidth onClick={ submitHandler }>Submit</Button>
+                <Button variant="contained" sx={{marginLeft: "10px"}} fullWidth onClick={ submitHandler }>Register</Button>
             </form>
         </div>
     );

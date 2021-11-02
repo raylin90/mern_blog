@@ -15,6 +15,7 @@ const UpdateBlog = props => {
         content: "",
     })
 
+    // axios call to get blog info. and store at local state
     useEffect(() => {
         axios.get(`http://localhost:8000/api/blog/${props._id}`)
             .then(res => {

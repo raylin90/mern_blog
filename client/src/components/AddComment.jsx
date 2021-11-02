@@ -29,6 +29,7 @@ const AddComment = props => {
                     props.setRefreshPage(!props.refreshPage)
                     setComment({
                         name: "",
+                        email: "",
                         text: "",
                     })
                 }
@@ -42,6 +43,7 @@ const AddComment = props => {
 
     return(
         <>
+        {/* display two version of comment box base on use login or not */}
         {
             loginUser.state ? 
             <>

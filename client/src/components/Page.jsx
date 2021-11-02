@@ -33,22 +33,25 @@ const Page = props => {
         right: 20,
     }
 
+    // delete comment axios call
     const deleteComment = (blogId, commentId) => {
         axios.delete(`http://localhost:8000/api/comment/delete/${commentId}/blog/${blogId}`)
             .then(res => console.log("deleted"))
             .catch(err => console.log("something went wrong when deleting a comment", err))
+            // after delete it, it will refresh the page
             props.setRefreshPage(!props.refreshPage)
     }
 
     const [text, setText] = useState("")
     const [open, setOpen] = useState(false);
+    // for dialogue open and close
     const handleClickOpen = e => {
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
     };
-
+    // axios call to update comment
     const updateComment = (blogId, commentId) => {
         if(text.length < 10) {
             alert("comment need more than 10")
@@ -56,6 +59,7 @@ const Page = props => {
             axios.post(`http://localhost:8000/api/comment/edit/${commentId}/blog/${blogId}`, {text: text})
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
+            // once update is done, it will close the dialogue, and refresh the page
             setOpen(false);
             props.setRefreshPage(!props.refreshPage)
         }
@@ -80,6 +84,7 @@ const Page = props => {
                     <br />
                     <Typography variant="body1" dangerouslySetInnerHTML={{ __html: blog.sanitizedContent }}></Typography>
                     <br /><br />
+                    {/* display comment base on whether we have comment or not */}
                     {
                         blog.comments[0] ? 
                         <>
@@ -98,7 +103,7 @@ const Page = props => {
                                         loginUser.state ? loginUser.state.email === comment.email ? 
                                         <>
                                         <EditIcon onClick={handleClickOpen} fontSize="small" color="success"/>
-
+                                        {/* dialog if user want to update comment*/}
                                         <Dialog
                                             open={open}
                                             onClose={handleClose}

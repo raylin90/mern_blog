@@ -22,7 +22,8 @@ const BlogSchema = new mongoose.Schema({
     description: {
         type: String,
         required: [true, "Description is required"],
-        minlength: [10, "Minimun length should be at least 10 characters"]
+        minlength: [10, "Minimun length should be at least 10 characters"],
+        maxlength: [100, "Maximum length should be 100 characters"],
     },
     content: {
         type: String,
