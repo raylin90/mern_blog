@@ -37,3 +37,31 @@ __Built with__
 2. MERN Auth.: is the hardest Auth. I have ever tried it. In comparison with Java and Python, the logic was quite easy, but with MERN, it's hard with setting up the cookies, and JSON Web Token. Not to mention we need to build a Middleware ourselves
 3. Socket.io: Compared with the above two, socket is a bit easier to understand, I built a simple chat app for users to communicate. Maybe later I will expand it to different chat rooms and display all users in the chat room with this kind of feature.
 4. How to maintain user experience while they don't require to login and register. All my previous projects need login and registration to perform some kind of function, but with MERN, it's completely optional, and users gain the same level of access as login users. How to set up the logic and display is a bit of a brainstorm, and with redux, it's definitely helpful.
+
+------------------
+### Installation
+```
+# clone github repository
+$ git clone https://github.com/raylin90/mern_blog.git
+
+# cd to repository
+$ cd mern_blog
+
+# Open in code editor
+# . code (I use VS code, so it's shortcut terminal command)
+
+# cd to React client folder
+$ cd client
+
+# install node_modules
+$ npm install
+
+# start react server (under client folder)
+$ npm start
+
+# start backed express server (under project folder, where we keep server.js file), you will need a 2nd terminal
+$ nodemon server
+
+# Run the app
+# Navigate to our local host
+```
