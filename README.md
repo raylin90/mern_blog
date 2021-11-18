@@ -48,7 +48,7 @@ $ git clone https://github.com/raylin90/mern_blog.git
 $ cd mern_blog
 
 # Open in code editor
-# . code (I use VS code, so it's shortcut terminal command)
+# . code (I use VS code, so it's a shortcut terminal command)
 
 # cd to React client folder
 $ cd client
